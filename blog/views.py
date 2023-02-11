@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post
-
+from django.views.generic import ListView,DetailView
 # Create your views here.
 
 tasks = ['hey', 'hello', 'bye']
@@ -19,6 +19,13 @@ tasks = ['hey', 'hello', 'bye']
 #         'date': 'August 1, 2020'
 #     }
 # ]
+
+# class PostListView(ListView) :
+#     model = Post
+
+# class PostDetailView(DetailView) :
+#     model = Post
+
 def blog_index(request):
     context= {
         'posts' : Post.objects.all()
