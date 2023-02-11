@@ -1,5 +1,6 @@
-{% extends "blogs/base.html" %} {% block content %} {% for post in posts %}
+{% extends "blogs/base.html" %} {% block content %}
 <article class="media content-section container mt-4">
+    {% if user.is_authenticated %} {% for post in posts %}
     <img class="rounded-circle article-img mr-2" width='50px' src="{{ post.author.profile.image.url }}" />
     <div class="media-body">
         <div class="article-metadata">
@@ -9,5 +10,11 @@
         <h2><a class="article-title" href="{url 'post-detail'}">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.content }}</p>
     </div>
+    {% endfor %}
+    {% else %}
+    <div class="article-metadata">
+        <stirong class="text-muted">Login To See the post</strong>
+    </div>
+    {% endif %}
 </article>
-{% endfor %} {% endblock content %}
+{% endblock content %}
